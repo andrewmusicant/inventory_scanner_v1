@@ -35,8 +35,8 @@ class Comic:
         last_date_sold varchar)''')
 
         data = (self.name, self.qty, self.price, self.publisher, self.author, self.illustrator, self.date_recieved, self.last_date_sold)
-        cur.execute('INSERT INTO inventory (name, qty, price, publisher, author, illustrator, date_recieved, last_date_sold) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', data)
         cur.execute('SELECT id FROM inventory where name = %s AND qty = %s AND price = %s AND publisher = %s AND author = %s AND illustrator = %s AND date_recieved = %s AND last_date_sold = %s', data)
+        cur.execute('INSERT INTO inventory (name, qty, price, publisher, author, illustrator, date_recieved, last_date_sold) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', data)
 
         con.commit()
         cur.close()
