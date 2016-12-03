@@ -11,3 +11,5 @@ version3 - fold in the ability to scan items
 version4 - as the new comics come.  consumers are notified when their comics come in.
    also gives weekly analytics to shop owner
 version5 - add feature for shop order comics from supplier
+
+Andrew M.
