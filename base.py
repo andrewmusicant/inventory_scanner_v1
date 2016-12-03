@@ -29,14 +29,14 @@ class Comic:
         cur.execute('''
         CREATE TABLE IF NOT EXISTS inventory (
         id SERIAL PRIMARY KEY,
-        name varchar, qty numeric, price varchar,
+        name varchar, qty numeric, price decimal,
         publisher varchar, author varchar,
         illustrator varchar, date_recieved varchar,
         last_date_sold varchar)''')
 
         data = (self.name, self.qty, self.price, self.publisher, self.author, self.illustrator, self.date_recieved, self.last_date_sold)
-        cur.execute('SELECT id FROM inventory where name = %s AND qty = %s AND price = %s AND publisher = %s AND author = %s AND illustrator = %s AND date_recieved = %s AND last_date_sold = %s', data)
         cur.execute('INSERT INTO inventory (name, qty, price, publisher, author, illustrator, date_recieved, last_date_sold) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', data)
+        cur.execute('SELECT id FROM inventory where name = %s AND qty = %s AND price = %s AND publisher = %s AND author = %s AND illustrator = %s AND date_recieved = %s AND last_date_sold = %s', data)
 
         con.commit()
         cur.close()
@@ -50,10 +50,10 @@ class Comic:
 
 
 def main():
-    print("Welcome to your collection manager.\n")
+    print("\nWelcome to your collection manager.\n")
     name = input("Please enter the name of the comic you wish to enter to your collection: ")
     qty = int(input("Please enter the quantity of the comic: "))
-    price = int(input("Please enter the price of the comic: "))
+    price = float(input("Please enter the price of the comic: "))
     publisher = input("Please enter the publisher of the comic: ")
     author = input("Please enter the author of the comic: ")
     illustrator = input("Please enter the illustrator of the comic: ")
