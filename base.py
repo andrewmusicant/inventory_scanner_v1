@@ -1,4 +1,3 @@
-import datetime
 import psycopg2
 
 
@@ -19,8 +18,8 @@ class Comic:
         self.publisher = publisher
         self.author = author
         self.illustrator = illustrator
-        self.date_recieved = datetime.date
-        self.last_date_sold = datetime.date
+    #     # self.date_recieved = datetime.date
+    #     # self.last_date_sold = datetime.date
 
     def save(self):
         con = psycopg2.connect(database='inventory_system', user='Envy')
@@ -31,12 +30,11 @@ class Comic:
         id SERIAL PRIMARY KEY,
         name varchar, qty numeric, price decimal,
         publisher varchar, author varchar,
-        illustrator varchar, date_recieved varchar,
-        last_date_sold varchar)''')
+        illustrator varchar)''')
 
-        data = (self.name, self.qty, self.price, self.publisher, self.author, self.illustrator, self.date_recieved, self.last_date_sold)
-        cur.execute('SELECT id FROM inventory where name = %s AND qty = %s AND price = %s AND publisher = %s AND author = %s AND illustrator = %s AND date_recieved = %s AND last_date_sold = %s', data)
-        cur.execute('INSERT INTO inventory (name, qty, price, publisher, author, illustrator, date_recieved, last_date_sold) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', data)
+        data = (self.name, self.qty, self.price, self.publisher, self.author, self.illustrator)
+        cur.execute('SELECT id FROM inventory where name = %s AND qty = %s AND price = %s AND publisher = %s AND author = %s AND illustrator = %s', data)
+        cur.execute('INSERT INTO inventory (name, qty, price, publisher, author, illustrator) VALUES (%s, %s, %s, %s, %s, %s)', data)
 
         con.commit()
         cur.close()
