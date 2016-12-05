@@ -1,4 +1,5 @@
 import psycopg2
+import string
 
 
 class Comic:
@@ -46,12 +47,18 @@ class Comic:
                         self.qty, self.price,
                         self.author, self.illustrator)
 
+def comicbook_number():
+    while True:
+        qty = input("Please enter the quantity of the comic: ")
+        if qty.isdigit():
+            return qty
 
 def main():
     print("\nWelcome to your collection manager.\n")
     name = input("Please enter the name of the comic you wish to enter to your collection: ")
-    qty = int(input("Please enter the quantity of the comic: "))
+    comicbook_number()
     price = float(input("Please enter the price of the comic: "))
+    # if string.digits == True:
     publisher = input("Please enter the publisher of the comic: ")
     author = input("Please enter the author of the comic: ")
     illustrator = input("Please enter the illustrator of the comic: ")
